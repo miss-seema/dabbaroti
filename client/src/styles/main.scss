@@ -1,0 +1,308 @@
+// 1. Import Variables
+@import "./variables";
+
+// 2. Import Bootstrap
+@import "bootstrap/scss/bootstrap";
+
+// 3. Typography & Heading Hierarchy
+h1, .h1 {
+  font-family: 'Montserrat', sans-serif !important;
+  font-weight: 800 !important;
+  letter-spacing: -0.025em;
+  line-height: 1.15;
+}
+
+h2, .h2 {
+  font-family: 'Montserrat', sans-serif !important;
+  font-weight: 800 !important;
+  letter-spacing: -0.02em;
+}
+
+h3, .h3, h4, .h4 {
+  font-family: 'Montserrat', sans-serif !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.015em;
+}
+
+h5, .h5, h6, .h6 {
+  font-family: 'Montserrat', sans-serif !important;
+  font-weight: 700 !important;
+}
+
+// Clean and Decent UI / Buttons / Forms (Inter)
+body,
+p,
+span,
+input,
+select,
+textarea,
+label,
+.form-control,
+.form-select,
+.form-check-label,
+.badge,
+.table {
+  font-family: $font-family-sans-serif;
+}
+
+.btn,
+button {
+  font-family: $font-family-sans-serif !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.015em;
+}
+
+// Custom Utility Classes & Aesthetics
+.font-serif,
+.font-montserrat {
+  font-family: 'Montserrat', sans-serif !important;
+}
+
+.font-sans,
+.font-clean {
+  font-family: $font-family-sans-serif !important;
+}
+
+// Brand Colors
+.bg-cream-bg { background-color: $brand-cream-bg !important; }
+.bg-cream { background-color: $brand-cream !important; }
+.bg-cream-card { background-color: $brand-cream-card !important; }
+.bg-roast { background-color: $brand-roast !important; }
+.bg-roast-light { background-color: $brand-roast-light !important; }
+.bg-terracotta { background-color: $brand-terracotta !important; }
+.bg-leaf { background-color: $brand-leaf !important; }
+.bg-leaf-light { background-color: $brand-leaf-light !important; }
+
+.text-roast { color: $brand-roast !important; }
+.text-terracotta { color: $brand-terracotta !important; }
+.text-leaf { color: $brand-leaf !important; }
+.text-cream { color: $brand-cream !important; }
+
+.border-roast { border-color: $brand-roast !important; }
+.border-cream { border-color: rgba(54, 21, 9, 0.12) !important; }
+.border-terracotta { border-color: $brand-terracotta !important; }
+
+// Custom Buttons
+.btn-terracotta {
+  background-color: $brand-terracotta;
+  color: #ffffff;
+  border: 1px solid $brand-terracotta;
+  font-weight: 700;
+  transition: all 0.25s ease;
+
+  &:hover, &:focus {
+    background-color: $brand-terracotta-hover;
+    border-color: $brand-terracotta-hover;
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(176, 86, 37, 0.25);
+  }
+}
+
+.btn-roast {
+  background-color: $brand-roast;
+  color: #ffffff;
+  border: 1px solid $brand-roast;
+  font-weight: 700;
+  transition: all 0.25s ease;
+
+  &:hover, &:focus {
+    background-color: $brand-roast-light;
+    border-color: $brand-roast-light;
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(54, 21, 9, 0.25);
+  }
+}
+
+.btn-outline-roast {
+  color: $brand-roast;
+  border: 2px solid rgba(54, 21, 9, 0.35);
+  background: transparent;
+  font-weight: 700;
+  transition: all 0.25s ease;
+
+  &:hover, &:focus {
+    background-color: $brand-roast;
+    color: #ffffff;
+    border-color: $brand-roast;
+  }
+}
+
+// Custom Glassmorphic Navbar
+.dr-navbar {
+  background: rgba(252, 248, 242, 0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(54, 21, 9, 0.08);
+  transition: all 0.3s ease;
+}
+
+.dr-nav-link {
+  color: #4a2818;
+  font-weight: 700;
+  padding: 0.55rem 1.1rem;
+  border-radius: 0.85rem;
+  text-decoration: none;
+  font-size: 0.925rem;
+  transition: all 0.2s ease;
+
+  &:hover {
+    color: $brand-roast;
+    background-color: rgba(248, 238, 219, 0.8);
+  }
+
+  &.active {
+    color: $brand-roast;
+    background-color: $brand-cream;
+    box-shadow: 0 2px 6px rgba(54, 21, 9, 0.04);
+  }
+}
+
+// Brand Logo Badge
+.logo-badge {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 2px solid $brand-roast;
+  overflow: hidden;
+  background-color: $brand-cream;
+  box-shadow: 0 3px 10px rgba(54, 21, 9, 0.15);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+// Dedicated High-Visibility Footer Styling
+.dr-footer {
+  background-color: #220B04;
+  color: #F8EEDB;
+
+  .footer-heading {
+    color: #FFFFFF;
+    font-family: $font-family-serif;
+    font-weight: 700;
+    font-size: 0.95rem;
+    letter-spacing: 0.06em;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+  }
+
+  .footer-link {
+    color: #E8D5C4;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: all 0.2s ease-in-out;
+    display: inline-flex;
+    align-items: center;
+
+    &:hover, &:focus {
+      color: #FFFFFF;
+      transform: translateX(4px);
+      text-decoration: none;
+    }
+  }
+
+  .footer-link-highlight {
+    color: #FFB37C;
+    font-weight: 600;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: all 0.2s ease-in-out;
+    display: inline-flex;
+    align-items: center;
+
+    &:hover, &:focus {
+      color: #FFE0C7;
+      transform: translateX(4px);
+      text-decoration: none;
+    }
+  }
+
+  .footer-link-success {
+    color: #6EE7B7;
+    font-weight: 700;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: all 0.2s ease-in-out;
+    display: inline-flex;
+    align-items: center;
+
+    &:hover, &:focus {
+      color: #A7F3D0;
+      transform: translateX(4px);
+      text-decoration: none;
+    }
+  }
+
+  .footer-contact-item {
+    color: #E8D5C4;
+    text-decoration: none;
+    font-size: 0.875rem;
+    transition: color 0.2s ease;
+
+    &:hover {
+      color: #FFFFFF;
+      text-decoration: none;
+    }
+  }
+
+  .footer-text-muted {
+    color: #C7B0A2;
+    font-size: 0.85rem;
+    line-height: 1.6;
+  }
+
+  .footer-tagline {
+    color: #FFD2A0;
+    font-family: $font-family-serif;
+    font-style: italic;
+    font-size: 1.05rem;
+    font-weight: 600;
+  }
+
+  .footer-border {
+    border-color: rgba(248, 238, 219, 0.15) !important;
+  }
+}
+
+// Custom Card Hover
+.dr-card {
+  border-radius: 1.5rem;
+  border: 1px solid rgba(54, 21, 9, 0.08);
+  background: #ffffff;
+  box-shadow: 0 6px 24px rgba(54, 21, 9, 0.04);
+  transition: all 0.3s ease;
+
+  &:hover {
+    box-shadow: 0 12px 36px rgba(54, 21, 9, 0.09);
+    border-color: rgba(176, 86, 37, 0.35);
+  }
+
+  &.featured {
+    border: 2px solid $brand-terracotta;
+    box-shadow: 0 12px 36px rgba(176, 86, 37, 0.15);
+  }
+}
+
+// Subtle Scrollbar
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: $brand-cream;
+}
+::-webkit-scrollbar-thumb {
+  background: #c5a88e;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: $brand-roast;
+}
