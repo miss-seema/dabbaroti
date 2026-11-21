@@ -70,18 +70,23 @@ app.use((err, req, res, next) => {
 
 const PORT = process.env.PORT || 5001;
 
-const server = app.listen(PORT, () => {
-  console.log(`🚀 Dabba Roti Server running in ${process.env.NODE_ENV || 'development'} mode on port ${PORT}`);
-  console.log(`🥘 Website: www.dabbaroti.com`);
-  console.log(`🍛 Tagline: "A Taste You'll Keep Coming Back For!"`);
-});
+// Only bind port if not running as a serverless function (e.g. Vercel)
+if (!process.env.VERCEL) {
+  const server = app.listen(PORT, () => {
+    console.log(`🚀 Dabba Roti Server running in ${process.env.NODE_ENV || 'development'} mode on port ${PORT}`);
+    console.log(`🥘 Website: www.dabbaroti.com`);
+    console.log(`🍛 Tagline: "A Taste You'll Keep Coming Back For!"`);
+  });
 
-server.on('error', (err) => {
-  if (err.code === 'EADDRINUSE') {
-    const fallbackPort = Number(PORT) + 1;
-    console.warn(`⚠️ Port ${PORT} was busy, automatically listening on fallback port ${fallbackPort}`);
-    app.listen(fallbackPort);
-  } else {
-    console.error('Server error:', err);
-  }
-});
+  server.on('error', (err) => {
+    if (err.code === 'EADDRINUSE') {
+      const fallbackPort = Number(PORT) + 1;
+      console.warn(`⚠️ Port ${PORT} was busy, automatically listening on fallback port ${fallbackPort}`);
+      app.listen(fallbackPort);
+    } else {
+      console.error('Server error:', err);
+    }
+  });
+}
+
+module.exports = app;
