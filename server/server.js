@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const dotenv = require('dotenv');
+const path = require('path');
 const connectDB = require('./config/db');
 
 // Load environment variables
@@ -39,10 +40,24 @@ app.get('/api/health', (req, res) => {
   });
 });
 
-// 404 handler for API routes
-app.use('/api/*', (req, res) => {
-  res.status(404).json({ success: false, message: `API route ${req.originalUrl} not found` });
-});
+// Serve frontend static files in production
+if (process.env.NODE_ENV === 'production') {
+  const clientDistPath = path.join(__dirname, '../client/dist');
+  app.use(express.static(clientDistPath));
+
+  app.get('*', (req, res) => {
+    if (!req.path.startsWith('/api')) {
+      res.sendFile(path.join(clientDistPath, 'index.html'));
+    } else {
+      res.status(404).json({ success: false, message: `API route ${req.originalUrl} not found` });
+    }
+  });
+} else {
+  // 404 handler for API routes in development
+  app.use('/api/*', (req, res) => {
+    res.status(404).json({ success: false, message: `API route ${req.originalUrl} not found` });
+  });
+}
 
 // Global Error Handler
 app.use((err, req, res, next) => {

@@ -4,12 +4,14 @@
   "description": "Dabba Roti - Modern Home-style Daily Tiffin & Meal Subscription Platform",
   "private": true,
   "scripts": {
+    "start": "node server/server.js",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "server": "npm run dev --prefix server",
     "client": "npm run dev --prefix client",
     "seed": "npm run seed --prefix server",
     "install:all": "npm install && npm install --prefix server && npm install --prefix client",
-    "build": "npm run build --prefix client"
+    "build": "npm run build --prefix client",
+    "build:prod": "npm install --prefix server && npm install --prefix client && npm run build --prefix client"
   },
   "devDependencies": {
     "concurrently": "^8.2.2"
