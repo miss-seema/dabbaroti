@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const dotenv = require('dotenv');
 const path = require('path');
+const fs = require('fs');
 const connectDB = require('./config/db');
 
 // Load environment variables
@@ -40,14 +41,25 @@ app.get('/api/health', (req, res) => {
   });
 });
 
-// Serve frontend static files in production
+// Serve frontend static files in production (Hostinger, Render, VPS, or Docker)
 if (process.env.NODE_ENV === 'production') {
-  const clientDistPath = path.join(__dirname, '../client/dist');
+  const possiblePaths = [
+    path.join(__dirname, '../dist'),
+    path.join(__dirname, '../client/dist'),
+    path.join(__dirname, '../public_html')
+  ];
+  const clientDistPath = possiblePaths.find(p => fs.existsSync(path.join(p, 'index.html'))) || possiblePaths[0];
+
   app.use(express.static(clientDistPath));
 
   app.get('*', (req, res) => {
     if (!req.path.startsWith('/api')) {
-      res.sendFile(path.join(clientDistPath, 'index.html'));
+      const indexPath = path.join(clientDistPath, 'index.html');
+      if (fs.existsSync(indexPath)) {
+        res.sendFile(indexPath);
+      } else {
+        res.sendFile(path.join(__dirname, '../dist/index.html'));
+      }
     } else {
       res.status(404).json({ success: false, message: `API route ${req.originalUrl} not found` });
     }
